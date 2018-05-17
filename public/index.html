@@ -4,6 +4,8 @@
 <head>
     <title>test-clock-face</title>
     <link rel="stylesheet" href="./main.css">
+   
+    <!--<script src="../app.js" type="text/javascript" charset="utf-8"></script>-->
 </head>
 
 <body>
@@ -14,7 +16,7 @@
   <audio  id="sound" controls loop hidden>
    <source src="https://www.w3schools.com/html/horse.mp3" type="audio/mpeg">
   </audio>
-  <img id="light" src="" alt="">
+  <!--<img id="light" src="" alt="">-->
 
   <!-- <p>A script on this page starts this clock:</p> -->
 <p id="demo"></p>
@@ -23,144 +25,12 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.1.0/moment.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/FitText.js/1.1/jquery.fittext.min.js"></script>
+ <script src="main.js" type="text/javascript" charset="utf-8"></script>
 </body>
 
-<!-- css -->
-<!-- body {
-  font-family: 'liquid_crystalregular', sans-serif;
-  user-select: none;
-  user-drag: none;
-}
-
-.clock {
-  height: 100px;
-  width: 70%;
-  line-height: 100px;  
-  margin: 150px auto 0;
-  padding: 0 50px;
-  background: #222;
-  color: #eee;
-  text-align: center;
-  border-radius: 15px;
-  box-shadow: 0 0 7px #222;
-  text-shadow: 0 0 3px #fff;
-} -->
-
-<script type="text/javascript">
-
-
-// var moment = require('moment');
-
-
-const ONE_SEC = 1000; // milliseconds
-
-//CURRENT TIME CLOCK
-// $('#clock').fitText(1.3);
-const clock = document.querySelector('#clock')
-function update()  {
-  //$('#clock').html
-  clock.textContent = moment().format('ddd h:mm a');
-}
-setInterval(update, ONE_SEC);
-console.log(moment().format('ddd h:mm a'))
 
 
 
-const json = "https://reqres.in/api/"
-
-var myVar = setInterval(function(){ sendAlarmSettings() }, 2 * ONE_SEC);
-
-// function myTimer() {
-//     var d = moment();
-//     var t = d.format('h:mm a')
-//     document.getElementById("demo").innerHTML = t;
-// }
-
-const sendAlarmSettings = function() {
-    fetch(json + 'application/json', {
-    method: "POST",
-    headers: new Headers({
-        "content-type": "application/json"
-    }),
-    body: JSON.stringify({
-        alarmOnOff: true,
-        alarmSet: 'Mon 9:21 pm',
-        lightOnOff: false
-    })
-    
-
-    
-    }).then(function(response){
-        return response.json()
-    }).then(function(response){
-        if (response.alarmOnOff == true) {
-            if (response.alarmSet == moment().format('ddd h:mm a')) {
-            return document.getElementById("sound").play() 
-            } if (response.lightOnOff == false) {
-                return document.getElementById('sound').pause()
-            }
-        }
-        console.log(response.alarmSet)
-    })
-}
 
 
-// const fetchAlarmSettings = setInterval(function(){myFetch()}, ONE_SEC)
-
-function myFetch() {
-    fetch(json + "users?page=2")
-      .then(response => {
-        return response.json();
-      })
-      .then(response => {
-        console.log(response);
-         
-      })
-}
-// $('#clock').fitText(1.3);
-
-// function update() {
-//   $('#clock').html(moment().format('ddd h:mm a'));
-// }
-
-// setInterval(update, ONE_SEC);
-
-
-// let alarmOn = false
-// let lightOn = false
-
-// function startAlarm() {
-//   let checkLight = setInterval(function(){
-//     if (!lightOn) {
-//       alarmOn = true
-//       console.log('alarm is running')
-//       document.getElementById("sound").play()
-//     }
-//     else {
-//       stopAlarm()
-//       clearInterval(checkLight)
-//     }
-//   }, 1000)
-// }
-
-// function stopAlarm() {
-//   alarmOn = false
-//   console.log("stop alarm")
-//   document.getElementById("sound").pause()
-// }
-
-function toggleLight() {
-  if (lightOn) {
-    lightOn = false
-    document.getElementById("light").src =""
-  }
-  else {
-    lightOn = true
-    document.getElementById("light").src = "https://tinyurl.com/ydhv7uu3"
-  }
-  console.log(lightOn)
-}
-
-
-</script>
 </html>
